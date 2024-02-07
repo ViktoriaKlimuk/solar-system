@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="/css/index.css" />
     <script src="/js/scroll.js" defer></script>
+    <script src="./js/loading.js" defer></script>
+    <script src="./js/selectId.js" type="module" defer></script>
   </head>
   <body>
     <header class="head-container">
@@ -29,18 +31,14 @@
       </div>
     </header>
     <article
-      class="main-article layer"
       style="background-image: url(./img/space.jpg)"
+      id="containerPlanets"
     >
-      <div class="main-article__content">
-        <h2 class="main-article__header">To be continued</h2>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium
-          cupiditate rem libero unde aliquam molestias eius asperiores id quia?
-          Non enim temporibus accusamus veritatis ab aspernatur perspiciatis
-          voluptas saepe qui.
-        </p>
-      </div>
+      <div
+        class="main-article layer main-article__content"
+        id="planet-container"
+      ></div>
     </article>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>
