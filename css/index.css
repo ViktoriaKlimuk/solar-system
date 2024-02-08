@@ -114,6 +114,7 @@ a {
     align-items: center;
     gap: 80px;
     padding: 50px;
+    border-color: red;
 }
 
 .planet-photo {
