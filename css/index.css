@@ -63,35 +63,6 @@ a {
     transform: translate3d(0, calc(var(--scrollTop) / 6), 0);
 }
 
-.main-article {
-    /* background-image: url(../img/space.jpg); */
-}
-
-
-/* .tracking-in-expand-fwd {
-    -webkit-animation: tracking-in-expand-fwd .8s cubic-bezier(.215, .61, .355, 1.000) both;
-    animation: tracking-in-expand-fwd .8s cubic-bezier(.215, .61, .355, 1.000) both
-}
-
-@keyframes tracking-in-expand-fwd {
-    0% {
-        letter-spacing: -.5em;
-        -webkit-transform: translateZ(-700px);
-        transform: translateZ(-700px);
-        opacity: 0
-    }
-
-    40% {
-        opacity: .6
-    }
-
-    100% {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        opacity: 1
-    }
-} */
-
 @keyframes tracking-in-expand-fwd {
     0% {
         opacity: 0;
@@ -111,13 +82,14 @@ a {
     align-items: center;
     gap: 80px;
     padding: 50px;
-    /* border: 4px solid red; */
     animation: tracking-in-expand-fwd 0.5s ease-out;
+    opacity: 0;
 }
 
 .planet-photo {
     width: calc((105% - 100px) /2);
     animation: myAnim 2s ease 0s 1 normal forwards;
+    text-align: center;
 }
 
 @keyframes myAnim {
@@ -149,7 +121,9 @@ a {
 
 /* .planet-div-details-mass {} */
 
-/* .planet-link {}  */
+.planet-link:hover {
+    color: blanchedalmond;
+} 
 @media screen and (max-width:600px) {
     .planet-card {
         flex-direction: column;
