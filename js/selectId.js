@@ -93,6 +93,7 @@ async function loadAndAnimateCards() {
 // Функция для проверки, виден ли элемент на экране
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
+	// console.log(rect);
     return (
         rect.top >= 0 &&
         rect.left >= 0 &&
