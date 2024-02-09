@@ -84,7 +84,7 @@ const btnRight = document.getElementById("right");
 btnLeft.addEventListener("click", handleClickL);
 btnRight.addEventListener("click", handleClickR);
 
-btnLeft.setAttribute("disabled", true);
+// btnLeft.setAttribute("disabled", true);
 
 function handleClickL(e) {
     console.log("Left button clicked");
