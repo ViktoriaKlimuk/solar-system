@@ -26,12 +26,19 @@ export async function loadAndAnimateCards() {
                 <img class="planet-photo" src="${planet.imgSrc.img}" alt="${planet.imgSrc.imgDescription}" srcset="" />
                 <div class="planet-div-info">
                   <h2 class="planet-div-info-name">${planet.name}</h2>
-                  <p class="planet-div-info-desc">${planet.description}"</p>
                   <div class="planet-div-details">
                     <p class="planet-div-details-volume">Volume: ${planet.basicDetails.volume}"</p>
                     <p class="planet-div-details-mass">Mass: ${planet.basicDetails.mass}"</p>
                   </div>
-                  <a class="planet-link" href="${planet.wikiLink}" target="_blank" rel="noopener noreferrer">Source</a>
+                  <button class="planet-btnOpen" onclick="window.${planet.name}.showModal();">See info</button>
+
+                    <dialog id="${planet.name}">
+                        <button class="planet-btnClose" onclick="window.${planet.name}.close();" aria-label="close">
+                        <img src="./img/xmark-svgrepo-com.png" alt="" srcset="" class="pngClose">
+                        </button>
+                        <p class="planet-div-info-desc">${planet.description}"</p>
+                        <a class="planet-link" href="${planet.wikiLink}" target="_blank" rel="noopener noreferrer">Source</a>
+                      </dialog>
                 </div>
             `;
 
