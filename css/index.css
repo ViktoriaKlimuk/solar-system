@@ -176,7 +176,7 @@ a {
 }
 
 dialog {
-    padding: 15px;
+    padding: 50px 40px 15px 15px;
     background: white;
     height: fit-content;
     /* padding-top: 2rem; */
