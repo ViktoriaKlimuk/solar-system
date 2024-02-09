@@ -1,3 +1,5 @@
+import { handleCard } from "./section.js";
+
 const url = 'https://planets-info-by-newbapi.p.rapidapi.com/api/v1/planets/';
 const options = {
     method: 'GET',
@@ -7,18 +9,18 @@ const options = {
     }
 };
 
-function animateCard(card) {
-    card.classList.add('tracking-in-expand-fwd'); 
-}
+let allCards = [];
+let currentIndex = 0;
 
-async function loadAndAnimateCards() {
+export async function loadAndAnimateCards() {
     try {
         const response = await fetch(url, options);
         const data = await response.json();
 
-        data.forEach(planet => {
+        data.slice(0, 8).forEach(planet => {
             const card = document.createElement('div');
             card.classList.add('planet-card');
+            card.id =` ${planet.id}`
 
             card.innerHTML = `
                 <img class="planet-photo" src="${planet.imgSrc.img}" alt="${planet.imgSrc.imgDescription}" srcset="" />
@@ -33,25 +35,34 @@ async function loadAndAnimateCards() {
                 </div>
             `;
 
+            allCards.push(card);
+            handleCard(card);
             document.getElementById('planet-container').appendChild(card);
         });
+
+        currentIndex = 0;
+        showCard(currentIndex);
+
 		document.querySelectorAll('.planet-card').forEach(card => {
             card.style.opacity = '1';
 			card.style.animation = 'tracking-in-expand-fwd 0.5s ease-out'
         });
 
-        window.addEventListener('scroll', function () {
-            const cards = document.querySelectorAll('.planet-card');
-
-            cards.forEach(card => {
-                if (isElementInViewport(card) && !card.classList.contains('visible')) {
-                    card.classList.add('visible');
-                    animateCard(card);
-                }
-            });
-        });
+        
     } catch (error) {
         console.error(error);
+    }
+}
+
+export function showCard(index) {
+    console.log("showCard called with index:", index);
+    if (index >= 0 && index < allCards.length) {
+        document.getElementById('planet-container').innerHTML = '';
+        allCards[index].style.opacity = '1';
+        allCards[index].style.animation = 'tracking-in-expand-fwd 0.5s ease-out';
+        document.getElementById('planet-container').appendChild(allCards[index]);
+    } else {
+        console.error('Invalid index:', index);
     }
 }
 
@@ -65,4 +76,35 @@ function isElementInViewport(el) {
     );
 }
 
-loadAndAnimateCards();
+loadAndAnimateCards(handleCard);
+
+const btnLeft = document.getElementById("left");
+const btnRight = document.getElementById("right");
+
+btnLeft.addEventListener("click", handleClickL);
+btnRight.addEventListener("click", handleClickR);
+
+btnLeft.setAttribute("disabled", true);
+
+function handleClickL(e) {
+    console.log("Left button clicked");
+    if (currentIndex > 0) {
+        currentIndex--;
+        showCard(currentIndex);
+    } else{
+        btnLeft.setAttribute("disabled", true);
+        btnRight.removeAttribute("disabled")
+    }
+    
+}
+
+function handleClickR(e) {
+    console.log("Right button clicked");
+    if (currentIndex < 7) {
+        currentIndex++;
+        showCard(currentIndex);
+    } else{
+        btnRight.setAttribute("disabled", true);
+        btnLeft.removeAttribute("disabled")
+    }
+}
