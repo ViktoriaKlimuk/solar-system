@@ -168,11 +168,11 @@ a {
     fill: var(--angle_color);
 }
 
-@media (hover: hover){
+/* @media (hover: hover){
     .angle:hover{
         opacity: 0;
     }
-}
+} */
 
 dialog {
     padding: 50px 40px 15px 15px;
