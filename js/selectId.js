@@ -91,27 +91,35 @@ const btnRight = document.getElementById("right");
 btnLeft.addEventListener("click", handleClickL);
 btnRight.addEventListener("click", handleClickR);
 
-// btnLeft.setAttribute("disabled", true);
+
+function updateButtonState() {
+    btnLeft.style.display = currentIndex === 0 ? 'none' : 'flex';
+    btnRight.style.display = currentIndex === allCards.length - 1 ? 'none' : 'flex';
+
+}
 
 function handleClickL(e) {
-    console.log("Left button clicked");
+    // if (currentIndex > 0) {
+    //     currentIndex--;
+    //     showCard(currentIndex);
+    // } 
     if (currentIndex > 0) {
         currentIndex--;
         showCard(currentIndex);
-    } else{
-        btnLeft.setAttribute("disabled", true);
-        btnRight.removeAttribute("disabled")
-    }
-    
+        updateButtonState();
+    } 
 }
 
 function handleClickR(e) {
-    console.log("Right button clicked");
-    if (currentIndex < 7) {
+    // if (currentIndex < 7) {
+    //     currentIndex++;
+    //     showCard(currentIndex);
+    // } 
+    if (currentIndex < allCards.length - 1) {
         currentIndex++;
         showCard(currentIndex);
-    } else{
-        btnRight.setAttribute("disabled", true);
-        btnLeft.removeAttribute("disabled")
-    }
+        updateButtonState();
+    } 
+
 }
+updateButtonState();
