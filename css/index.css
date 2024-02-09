@@ -29,9 +29,9 @@ a {
 
 .head-container {
     position: relative;
-    /* height: 100vh; */
 }
-
+.head-title{
+}
 .layers {
     height: 100vh;
     display: flex;
@@ -41,8 +41,6 @@ a {
     position: relative;
     overflow: hidden;
 }
-
-/* .layer-name {} */
 
 .layer {
     height: 100%;
@@ -125,19 +123,10 @@ a {
     margin-bottom: 10px;
 }
 
-/* .planet-div-details-volume {} */
-
-/* .planet-div-details-mass {} */
-
 .planet-link {
     color: var(--text_dialog);;
 } 
 @media screen and (max-width:700px) {
-    .slide {
-        flex-direction: column;
-        gap: 20px;
-        /* padding: 20px; */
-    }
     .planet-card{
         padding: 20px;
     flex-direction: column;
@@ -179,11 +168,9 @@ dialog {
     padding: 50px 40px 15px 15px;
     background: white;
     height: fit-content;
-    /* padding-top: 2rem; */
     border-radius: 20px;
     border: 0;
     box-shadow: 0 5px 30px 0 rgb(0 0 0 / 10%);
-    /* animation: myAnim  1s ease both; */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -211,12 +198,6 @@ dialog {
   color: #174ea6;
 }
 
-.planet-btnOpen:focus {
-  outline: none;
-  border: 2px solid #4285f4;
-}
-
-
 .planet-btnClose{
     filter: grayscale(1);
     border: none;
@@ -239,26 +220,3 @@ dialog {
     height: 100vh;
     position: relative;
   }
-  
-  /* .slider {
-    position: absolute;
-    display: flex;
-  }
-  
-  .slide {
-    flex-grow: 1;
-    /* background-color: #ccc; */
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; */
-  /* } */ 
-  
-  /* .thumb {
-    position: absolute;
-    left: 0;
-    height: 10%;
-    background-color: #4285f4;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
-  /* }  */ 
