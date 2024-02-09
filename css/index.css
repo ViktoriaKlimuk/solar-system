@@ -107,7 +107,6 @@ a {
  .planet-div-info {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 10px;
  }
 
@@ -130,26 +129,6 @@ a {
 .planet-link {
     color: var(--text_dialog);;
 } 
-@media screen and (max-width:700px) {
-    .planet-card{
-    flex-direction: column;
-    gap: 20px;
-    }
-    .planet-photo {
-        width: calc((222% - 0px) /2);;
-    }
-    dialog{
-        width: 100%;
-    }
-}
-#left{
-    left: 15px;
-}
-#right{
-    right: 15px;
-    justify-content: end;
-}
-
 .btn-container-btn{
     background-color: transparent;
     border: transparent;
@@ -160,6 +139,29 @@ a {
     align-items: center;
     animation: myAnim 2s ease 0s 1 normal forwards;
 
+}
+@media screen and (max-width:700px) {
+    .planet-card{
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+    }
+    .planet-photo {
+        width: calc((222% - 0px) /2);;
+    }
+    dialog{
+        width: 100%;
+    }
+    .btn-container-btn {
+        top: 56.2%;
+    }
+}
+#left{
+    left: 15px;
+}
+#right{
+    right: 15px;
+    justify-content: end;
 }
 .angle{
     stroke: var(--angle_color);
