@@ -167,8 +167,11 @@ a {
     stroke: var(--angle_color);
     fill: var(--angle_color);
 }
-.angle:hover{
-    opacity: 0;
+
+@media (hover: hover){
+    .angle:hover{
+        opacity: 0;
+    }
 }
 
 dialog {
