@@ -8,7 +8,7 @@ const options = {
 };
 
 function animateCard(card) {
-    card.classList.add('tracking-in-expand-fwd'); // Добавляем класс анимации
+    card.classList.add('tracking-in-expand-fwd'); 
 }
 
 async function loadAndAnimateCards() {
@@ -41,12 +41,11 @@ async function loadAndAnimateCards() {
         });
 
         window.addEventListener('scroll', function () {
-            // Получаем все карточки
             const cards = document.querySelectorAll('.planet-card');
 
             cards.forEach(card => {
                 if (isElementInViewport(card) && !card.classList.contains('visible')) {
-                    card.classList.add('visible'); // Добавляем класс, чтобы анимация применялась только при первом появлении
+                    card.classList.add('visible');
                     animateCard(card);
                 }
             });
@@ -56,10 +55,8 @@ async function loadAndAnimateCards() {
     }
 }
 
-// Функция для проверки, виден ли элемент на экране
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
-	// console.log(rect);
     return (
         rect.top >= 0 &&
         rect.left >= 0 &&
