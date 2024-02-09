@@ -145,6 +145,9 @@ a {
     .planet-photo {
         width: calc((222% - 0px) /2);;
     }
+    dialog{
+        width: 100%;
+    }
 }
 .btn-container{
     display: flex;
