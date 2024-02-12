@@ -235,7 +235,7 @@ dialog {
     left: 50%;
     transform: translate(-50%, -50%);
     color: var(--text_dialog);
-    
+    max-width: 450px;
 	animation: fadeIn 1s ease both;
     &::backdrop {
 		animation: fadeIn 1s ease both;
@@ -245,6 +245,9 @@ dialog {
 	}
 }
 
+.planet-div-info-desc{
+    padding: 10px;
+}
 @keyframes fadeIn {
 	from {
 		opacity: 0;
