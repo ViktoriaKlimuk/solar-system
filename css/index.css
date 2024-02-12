@@ -83,17 +83,13 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* gap: 80px; */
-    /* padding: 50px; */
     animation: tracking-in-expand-fwd 0.5s ease-out;
     opacity: 0;
 }
 
 .planet-photo {
-    /* width: calc((105% - 100px) /2); */
     animation: myAnim 2s ease 0s 1 normal forwards;
     display: block;
-    margin: 0 auto;
 }
 
 @keyframes myAnim {
@@ -144,6 +140,12 @@ a {
     fill: var(--angle_color);
 }
 
+
+@media screen and (max-width:500px) {
+    .planet-photo {
+        margin: 0 auto;
+    }
+}
 @media screen and (min-width:300px) {
     .planet-card{
         gap: 15px;
@@ -152,7 +154,7 @@ a {
         flex-direction: column;
     }
     .planet-photo {
-        width: calc((205% - 0px) /2);;
+        width: calc((205% - 0px) /2);
     }
     .indicator {
         width: 10px;
@@ -170,7 +172,9 @@ a {
     .planet-photo {
         width: calc((150% - 20px) /2);;
     }
-    
+    a .planet-photo{
+        width: 650px;
+    }
     dialog{
         width: 100%;
     }
@@ -181,7 +185,7 @@ a {
     .planet-div-info{
         display: flex;
         flex-direction: column;
-        width: 44%;
+        width: 400px;
         gap: 15px;
     }
     .planet-div-details,
@@ -302,7 +306,7 @@ dialog {
     font-family: 'Montserrat', sans-serif ;
   }
 
-  #indicator-container {
+  .indicator-container {
     display: flex;
     position: absolute;
     bottom: 15px;

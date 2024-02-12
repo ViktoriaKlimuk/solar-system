@@ -51,11 +51,16 @@ export async function loadAndAnimateCards(handleCard) {
             const indicator = document.createElement('div');
             indicator.classList.add('indicator');
             indicator.id = `indicator-${planet.id}`;
+            // indicator.addEventListener('click', () => {
+            //     showCard(data.findIndex(p => p.id === parseInt(indicator.id.split('-')[1])));
+            //   });
             indicator.addEventListener('click', () => {
-                showCard(data.findIndex(p => p.id === parseInt(indicator.id.split('-')[1])));
-              });
-      
-            document.getElementById('indicator-container').appendChild(indicator);
+                const planetId = parseInt(indicator.id.split('-')[1]);
+                currentIndex = data.findIndex(p => p.id === planetId);
+                showCard(currentIndex);
+            });
+            // document.querySelector('.indicator-container').appendChild(indicator);
+            document.getElementsByClassName('indicator-container')[0].appendChild(indicator);
 
             allCards.push(card);
             handleCard(card);
@@ -92,6 +97,7 @@ export function showCard(index) {
             indicator.classList.remove('active');
           }
         });
+        updateButtonState()
     } else {
         console.error('Invalid index:', index);
     }
@@ -118,6 +124,7 @@ function handleClickL(e) {
         currentIndex--;
         showCard(currentIndex);
         updateButtonState();
+        
     } 
 }
 
