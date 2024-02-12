@@ -12,7 +12,7 @@ const options = {
 let allCards = [];
 let currentIndex = 0;
 
-export async function loadAndAnimateCards() {
+export async function loadAndAnimateCards(handleCard) {
     try {
         const response = await fetch(url, options);
         const data = await response.json();
@@ -23,7 +23,9 @@ export async function loadAndAnimateCards() {
             card.id =` ${planet.id}`
 
             card.innerHTML = `
+                <a href="${planet.wikiLink}" target="_blank" rel="noopener noreferrer">
                 <img class="planet-photo" src="${planet.imgSrc.img}" alt="${planet.imgSrc.imgDescription}" srcset="" />
+                </a>
                 <div class="planet-div-info">
                   <h2 class="planet-div-info-name">${planet.name}</h2>
                   <div class="planet-div-details">
@@ -32,15 +34,28 @@ export async function loadAndAnimateCards() {
                   </div>
                   <button class="planet-btnOpen" onclick="window.${planet.name}.showModal();">See info</button>
 
-                    <dialog id="${planet.name}">
+                    <dialog id="${planet.name}" >
                         <button class="planet-btnClose" onclick="window.${planet.name}.close();" aria-label="close">
                         <img src="./img/xmark-svgrepo-com.png" alt="" srcset="" class="pngClose">
                         </button>
                         <p class="planet-div-info-desc">${planet.description}"</p>
-                        <a class="planet-link" href="${planet.wikiLink}" target="_blank" rel="noopener noreferrer">Source</a>
+                        <button type="button" class="dialog-info-btn">
+                            <a class="planet-link" href="${planet.wikiLink}" target="_blank" rel="noopener noreferrer">
+                                Source
+                            </a>
+                        </button>
                       </dialog>
                 </div>
             `;
+
+            const indicator = document.createElement('div');
+            indicator.classList.add('indicator');
+            indicator.id = `indicator-${planet.id}`;
+            indicator.addEventListener('click', () => {
+                showCard(data.findIndex(p => p.id === parseInt(indicator.id.split('-')[1])));
+              });
+      
+            document.getElementById('indicator-container').appendChild(indicator);
 
             allCards.push(card);
             handleCard(card);
@@ -68,6 +83,15 @@ export function showCard(index) {
         allCards[index].style.opacity = '1';
         allCards[index].style.animation = 'tracking-in-expand-fwd 0.5s ease-out';
         document.getElementById('planet-container').appendChild(allCards[index]);
+    
+        const indicators = document.querySelectorAll('.indicator');
+        indicators.forEach((indicator, i) => {
+          if (i === index) {
+            indicator.classList.add('active');
+          } else {
+            indicator.classList.remove('active');
+          }
+        });
     } else {
         console.error('Invalid index:', index);
     }
@@ -83,15 +107,6 @@ function isElementInViewport(el) {
     );
 }
 
-loadAndAnimateCards(handleCard);
-
-const btnLeft = document.getElementById("left");
-const btnRight = document.getElementById("right");
-
-btnLeft.addEventListener("click", handleClickL);
-btnRight.addEventListener("click", handleClickR);
-
-
 function updateButtonState() {
     btnLeft.style.display = currentIndex === 0 ? 'none' : 'flex';
     btnRight.style.display = currentIndex === allCards.length - 1 ? 'none' : 'flex';
@@ -99,10 +114,6 @@ function updateButtonState() {
 }
 
 function handleClickL(e) {
-    // if (currentIndex > 0) {
-    //     currentIndex--;
-    //     showCard(currentIndex);
-    // } 
     if (currentIndex > 0) {
         currentIndex--;
         showCard(currentIndex);
@@ -111,10 +122,6 @@ function handleClickL(e) {
 }
 
 function handleClickR(e) {
-    // if (currentIndex < 7) {
-    //     currentIndex++;
-    //     showCard(currentIndex);
-    // } 
     if (currentIndex < allCards.length - 1) {
         currentIndex++;
         showCard(currentIndex);
@@ -122,4 +129,45 @@ function handleClickR(e) {
     } 
 
 }
+
+loadAndAnimateCards(handleCard);
+
+const btnLeft = document.getElementById("left");
+const btnRight = document.getElementById("right");
+
+btnLeft.addEventListener("click", handleClickL);
+btnRight.addEventListener("click", handleClickR);
+
+let xStart = null;
+let yStart = null;
+
+function handleTouchStart(e) {
+    xStart = e.touches[0].clientX;
+    yStart = e.touches[0].clientY;
+}
+
+function handleTouchMove(e) {
+    if (!xStart || !yStart) return;
+
+    let xDiff = xStart - e.touches[0].clientX;
+    let yDiff = yStart - e.touches[0].clientY;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if (xDiff > 0) {
+            handleClickR();
+        } else {
+            handleClickL();
+        }
+    }
+
+    xStart = null;
+    yStart = null;
+}
+
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+
+
 updateButtonState();
+
+  
