@@ -88,22 +88,12 @@ a {
     animation: tracking-in-expand-fwd 0.5s ease-out;
     opacity: 0;
 }
-/* @media screen and (max-width:375px) {
-    .planet-card {
-        /* flex-direction: r; */
-        /* gap: 10px;
-    } */
-
-    /* #indicator-container {
-        margin: 16px 0;
-    } */
-    
-/* } */
 
 .planet-photo {
-    width: calc((105% - 100px) /2);
+    /* width: calc((105% - 100px) /2); */
     animation: myAnim 2s ease 0s 1 normal forwards;
-    text-align: center;
+    display: block;
+    margin: 0 auto;
 }
 
 @keyframes myAnim {
@@ -123,15 +113,9 @@ a {
  .planet-div-info-name {
     letter-spacing: 1.3px;
     text-align: center;
-    /* margin-bottom: 10px; */
  } 
 
-/* .planet-div-info-desc { */
-    /* margin-bottom: 20px; */
-/* } */
-
 .planet-div-details { 
-    /* margin-bottom: 10px; */
     display: contents;
 }
 
@@ -164,6 +148,7 @@ a {
     .planet-card{
         gap: 15px;
         justify-content: center;
+        padding: 25px;
         margin: 25px;
         flex-direction: column;
     }
@@ -179,26 +164,36 @@ a {
     .planet-card{
         gap: 20px;
         justify-content: center;
+        padding: 0;
         margin: 40px;
+        flex-direction: row;
     }
     .planet-photo {
-        width: calc((205% - 0px) /2);;
+        width: calc((150% - 20px) /2);;
     }
+    
     dialog{
         width: 100%;
     }
     .planet-div-info-name{
-        font-size: -webkit-xxx-large;
+        font-size: x-large;
+    }
+
+    .planet-div-info{
+        display: flex;
+        flex-direction: column;
+        width: 44%;
+        gap: 15px;
     }
     .planet-div-details,
     .planet-div-info-desc,
     .planet-link,
     .planet-btnOpen  { 
-        font-size: xx-large;
+        font-size: larger;
     }
     .indicator{
-        width: 25px;
-        height: 25px;
+        max-width: 25px;
+        max-height: 25px;
     }
     .angle{
         width: 50px;
@@ -207,18 +202,11 @@ a {
 }
 @media screen and (min-width:1000px) {
     .planet-card{
+        padding: 0;
         margin: 70px;
         flex-direction: row;
     }
-    .planet-photo {
-        width: calc((195% - 0px) /2);;
-    }
-    .planet-div-info{
-        display: flex;
-        flex-direction: column;
-        width: 44%;
-        gap: 15px;
-    }
+    
     .planet-div-info-name{
         font-size: xx-large;
     }
@@ -269,7 +257,6 @@ dialog {
   border-style: none;
   display: inline-flex;
   justify-content: center;
-  /* font-size: 14px; */
   font-family: 'Montserrat', sans-serif;
   letter-spacing: 1.3px;
   line-height: normal;
@@ -300,15 +287,7 @@ dialog {
     width: 25px;
     height: 25px;
   }
- /* .vertical-slider { 
-    position: relative;
-  } */
 
-  /* @media screen and (max-width:700px) {
-    .planet-btnOpen{
-        /* width: 25%; 
-    }
-  } */
   .dialog-info-btn{
     width: inherit;
     padding: 1rem 3rem ;
