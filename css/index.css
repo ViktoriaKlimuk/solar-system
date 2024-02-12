@@ -149,7 +149,6 @@ a {
         gap: 15px;
         justify-content: center;
         padding: 25px;
-        margin: 25px;
         flex-direction: column;
     }
     .planet-photo {
