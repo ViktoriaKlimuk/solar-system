@@ -1,4 +1,4 @@
 export function handleCard(card) {
-    console.log("New card received", card);
+    // console.log("New card received", card);
 }
 

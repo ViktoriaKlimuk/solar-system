@@ -75,14 +75,49 @@ export async function loadAndAnimateCards(handleCard) {
 			card.style.animation = 'tracking-in-expand-fwd 0.5s ease-out'
         });
 
+        lazyLoad();
         
     } catch (error) {
         console.error(error);
     }
 }
 
+function lazyLoad() {
+    const cardContainer = document.getElementById('planet-container');
+    const scrollThreshold = 200; // Adjust as needed
+
+    // Add an event listener for scroll events
+    cardContainer.addEventListener('scroll', () => {
+        const containerHeight = cardContainer.clientHeight;
+        const scrollHeight = cardContainer.scrollHeight;
+        const scrollTop = cardContainer.scrollTop;
+
+        // Check if the user has scrolled to the threshold
+        if (scrollHeight - scrollTop - containerHeight < scrollThreshold) {
+            loadMoreCards();
+        }
+    });
+}
+
+async function loadMoreCards() {
+    const response = await fetch(url, options);
+    const data = await response.json();
+
+    // Assuming you want to load 8 more cards each time
+    data.slice(allCards.length, allCards.length + 8).forEach(planet => {
+        const card = document.createElement('div');
+        card.classList.add('planet-card');
+        card.id = `planet-${planet.id}`; // Changed id format
+
+        // Rest of your code for creating the card element...
+
+        allCards.push(card);
+        document.getElementById('planet-container').appendChild(card);
+    });
+}
+
 export function showCard(index) {
-    console.log("showCard called with index:", index);
+    // console.log("showCard called with index:", index);
     if (index >= 0 && index < allCards.length) {
         document.getElementById('planet-container').innerHTML = '';
         allCards[index].style.opacity = '1';
