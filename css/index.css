@@ -4,8 +4,8 @@ html{
     scroll-behavior: smooth;
 }
 :root {
-    /* --background_color: #010101; */
-    --bc-color:#121215;
+    --background_color1: #010101;
+    --bc-color2:#121215;
     --text_color: #fff;
     --text_dialog: #010101;
     --angle_color:rgb(81, 81, 81);
@@ -14,7 +14,7 @@ html{
 }
 
 body {
-    background-color: var(--bc-color);
+    background-color: var(--background_color1);
     color: var(--text_color);
     line-height: 1.55;
     font-family: 'Montserrat', sans-serif;
@@ -101,7 +101,6 @@ a {
     animation: myAnim 2s ease 0s 1 normal forwards;
     display: block;
     border-radius: 50%;
-    box-shadow: 0 0 200px black;
 }
 
 @keyframes myAnim {
@@ -355,7 +354,7 @@ dialog {
     height: 100vh;
     display: grid;
     place-items: center;
-    background-color: #121215;
+    background: linear-gradient(to bottom, black, 20%, var(--bc-color2));;
   }
   .rotatePlanets-article{
     position: relative;
